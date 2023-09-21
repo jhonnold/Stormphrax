@@ -632,6 +632,17 @@ namespace stormphrax::search
 				&& stack.eval >= beta + rfpMargin() * depth / (improving ? 2 : 1))
 				return stack.eval;
 
+			// Razoring (RZR)
+			// If static eval is well below alpha and no captures (qsearch)
+			// can raise the eval back to alpha, then prune early with a fail low.
+			if (depth <= maxRazorDepth()
+				&& stack.eval + razorMargin() * depth <= alpha)
+			{
+				const auto score = qsearch(thread, ply, moveStackIdx, alpha, beta);
+				if (score <= alpha)
+					return score;
+			}
+
 			// Nullmove pruning (NMP)
 			// If static eval is above beta, and zugzwang is unlikely
 			// (i.e. the side to move has material other than pawns),

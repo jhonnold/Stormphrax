@@ -66,6 +66,9 @@ inline auto Name() { return param_##Name.value; }
 	SP_TUNABLE_PARAM(maxRfpDepth, 8, 4, 12, 1)
 	SP_TUNABLE_PARAM(rfpMargin, 75, 25, 150, 5)
 
+	SP_TUNABLE_PARAM(maxRazorDepth, 6, 3, 9, 1)
+	SP_TUNABLE_PARAM(razorMargin, 200, 75, 500, 15)
+
 	SP_TUNABLE_PARAM(maxSeePruningDepth, 9, 4, 15, 1)
 
 	SP_TUNABLE_PARAM(quietSeeThreshold, -50, -120, -20, 10)
